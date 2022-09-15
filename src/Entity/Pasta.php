@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PastaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Pasta
      * @ORM\Column(type="integer")
      */
     private $dimensioni;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Cottura::class, mappedBy="pasta", orphanRemoval=true)
+     */
+    private $cotturas;
+
+    public function __construct()
+    {
+        $this->cotturas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,36 @@ class Pasta
     public function setDimensioni(int $dimensioni): self
     {
         $this->dimensioni = $dimensioni;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cottura>
+     */
+    public function getCotturas(): Collection
+    {
+        return $this->cotturas;
+    }
+
+    public function addCottura(Cottura $cottura): self
+    {
+        if (!$this->cotturas->contains($cottura)) {
+            $this->cotturas[] = $cottura;
+            $cottura->setPasta($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCottura(Cottura $cottura): self
+    {
+        if ($this->cotturas->removeElement($cottura)) {
+            // set the owning side to null (unless already changed)
+            if ($cottura->getPasta() === $this) {
+                $cottura->setPasta(null);
+            }
+        }
 
         return $this;
     }
