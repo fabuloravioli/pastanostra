@@ -35,7 +35,7 @@ class Pasta
     private $dimensioni;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cottura::class, mappedBy="pasta", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Cottura::class, mappedBy="pasta", orphanRemoval=true, cascade={"persist"})
      */
     private $cotturas;
 
