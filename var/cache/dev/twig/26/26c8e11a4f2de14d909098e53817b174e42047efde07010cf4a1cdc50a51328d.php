@@ -160,6 +160,6 @@ class __TwigTemplate_0a1248f0bc2b7314f9f4f6de7f4543eb721dca64a9fcbc2b0f2971fd18b
 
     {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: profiler_url, name: 'time', status: status_color }) }}
 {% endblock %}
-", "@WebProfiler/Collector/memory.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/memory.html.twig");
+", "@WebProfiler/Collector/memory.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/memory.html.twig");
     }
 }

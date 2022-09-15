@@ -81,6 +81,6 @@ class __TwigTemplate_c2107f53899ca79c0d3c74a6f69656e1c6e65efef7feefab615afda5a20
     public function getSourceContext()
     {
         return new Source("{% block panel '' %}
-", "@WebProfiler/Profiler/ajax_layout.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/ajax_layout.html.twig");
+", "@WebProfiler/Profiler/ajax_layout.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/ajax_layout.html.twig");
     }
 }

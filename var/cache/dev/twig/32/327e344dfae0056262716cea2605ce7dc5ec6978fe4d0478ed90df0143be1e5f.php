@@ -434,6 +434,6 @@ class __TwigTemplate_f1f7d2092f65b9768b92b2b3e51f22683f2fa7273204ab04925534b8170
     {%- set widget_class = widget_class|default('mr-2') -%}
     {{- parent() -}}
 {%- endblock radio_widget -%}
-", "tailwind_2_layout.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_2_layout.html.twig");
+", "tailwind_2_layout.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/tailwind_2_layout.html.twig");
     }
 }

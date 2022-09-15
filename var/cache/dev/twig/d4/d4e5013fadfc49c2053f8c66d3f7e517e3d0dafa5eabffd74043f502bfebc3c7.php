@@ -1349,6 +1349,6 @@ class __TwigTemplate_2c11cfefaa37de7cbc0dbdfcffab12585c4e5921a7e7c0adbea7d628ae4
         <span>{{ route|default(controller) }}</span>
     {%- endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/request.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
+", "@WebProfiler/Collector/request.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
     }
 }

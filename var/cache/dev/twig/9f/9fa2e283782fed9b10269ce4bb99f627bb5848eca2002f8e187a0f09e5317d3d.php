@@ -227,6 +227,6 @@ class __TwigTemplate_f7868cc02e5e519a40a9798a78b82ddb468e56a478950b134efe6d6894b
         </div>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/exception.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
+", "@WebProfiler/Collector/exception.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
     }
 }

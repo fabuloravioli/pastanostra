@@ -194,6 +194,6 @@ class __TwigTemplate_75e8909a6d9a00434b77c51507c0ecc331e7930736377bafa13ef25a909
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/home/plazziac/php/pastanostra/templates/base.html.twig");
+", "base.html.twig", "/home/plazziac/php/projet/pastanostra/templates/base.html.twig");
     }
 }

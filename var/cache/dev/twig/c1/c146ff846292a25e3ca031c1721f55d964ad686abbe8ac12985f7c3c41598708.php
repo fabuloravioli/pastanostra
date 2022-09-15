@@ -1671,6 +1671,6 @@ class __TwigTemplate_4a9ca2c9515940543dfcafa144ac48eee7e966fb6e55a3f79da0bc462b8
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/home/plazziac/php/pastanostra/vendor/doctrine/doctrine-bundle/Resources/views/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/doctrine/doctrine-bundle/Resources/views/Collector/db.html.twig");
     }
 }

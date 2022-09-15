@@ -62,6 +62,64 @@ return [[
 '[C]Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%23addLink' => 1,
 'Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%24container' => 0,
 '[C]Symfony%5CBundle%5CFrameworkBundle%5CController%5CAbstractController%24container' => 1,
+'App%5CEntity%5CCottura' => 2,
+'[C]App%5CEntity%5CCottura' => 1,
+'App%5CEntity%5CCottura%23getId' => 0,
+'[C]App%5CEntity%5CCottura%23getId' => 1,
+'App%5CEntity%5CCottura%23getTypo' => 0,
+'[C]App%5CEntity%5CCottura%23getTypo' => 1,
+'App%5CEntity%5CCottura%23setTypo' => 0,
+'[C]App%5CEntity%5CCottura%23setTypo' => 1,
+'App%5CEntity%5CCottura%23getTiempo' => 0,
+'[C]App%5CEntity%5CCottura%23getTiempo' => 1,
+'App%5CEntity%5CCottura%23setTiempo' => 0,
+'[C]App%5CEntity%5CCottura%23setTiempo' => 1,
+'App%5CEntity%5CCottura%23getPasta' => 0,
+'[C]App%5CEntity%5CCottura%23getPasta' => 1,
+'App%5CEntity%5CCottura%23setPasta' => 0,
+'[C]App%5CEntity%5CCottura%23setPasta' => 1,
+'App%5CEntity%5CCottura%24id' => 3,
+'[C]App%5CEntity%5CCottura%24id' => 1,
+'App%5CEntity%5CCottura%24typo' => 4,
+'[C]App%5CEntity%5CCottura%24typo' => 1,
+'App%5CEntity%5CCottura%24tiempo' => 5,
+'[C]App%5CEntity%5CCottura%24tiempo' => 1,
+'App%5CEntity%5CCottura%24pasta' => 6,
+'[C]App%5CEntity%5CCottura%24pasta' => 1,
+'App%5CEntity%5CPasta' => 7,
+'[C]App%5CEntity%5CPasta' => 1,
+'App%5CEntity%5CPasta%23__construct' => 0,
+'[C]App%5CEntity%5CPasta%23__construct' => 1,
+'App%5CEntity%5CPasta%23getId' => 0,
+'[C]App%5CEntity%5CPasta%23getId' => 1,
+'App%5CEntity%5CPasta%23getNome' => 0,
+'[C]App%5CEntity%5CPasta%23getNome' => 1,
+'App%5CEntity%5CPasta%23setNome' => 0,
+'[C]App%5CEntity%5CPasta%23setNome' => 1,
+'App%5CEntity%5CPasta%23getOrigine' => 0,
+'[C]App%5CEntity%5CPasta%23getOrigine' => 1,
+'App%5CEntity%5CPasta%23setOrigine' => 0,
+'[C]App%5CEntity%5CPasta%23setOrigine' => 1,
+'App%5CEntity%5CPasta%23getDimensioni' => 0,
+'[C]App%5CEntity%5CPasta%23getDimensioni' => 1,
+'App%5CEntity%5CPasta%23setDimensioni' => 0,
+'[C]App%5CEntity%5CPasta%23setDimensioni' => 1,
+'App%5CEntity%5CPasta%23getCotturas' => 0,
+'[C]App%5CEntity%5CPasta%23getCotturas' => 1,
+'App%5CEntity%5CPasta%23addCottura' => 0,
+'[C]App%5CEntity%5CPasta%23addCottura' => 1,
+'App%5CEntity%5CPasta%23removeCottura' => 0,
+'[C]App%5CEntity%5CPasta%23removeCottura' => 1,
+'App%5CEntity%5CPasta%24id' => 3,
+'[C]App%5CEntity%5CPasta%24id' => 1,
+'App%5CEntity%5CPasta%24nome' => 4,
+'[C]App%5CEntity%5CPasta%24nome' => 1,
+'App%5CEntity%5CPasta%24origine' => 4,
+'[C]App%5CEntity%5CPasta%24origine' => 1,
+'App%5CEntity%5CPasta%24dimensioni' => 5,
+'[C]App%5CEntity%5CPasta%24dimensioni' => 1,
+'App%5CEntity%5CPasta%24cotturas' => 8,
+'[C]App%5CEntity%5CPasta%24cotturas' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 0,
 '[C]Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%23__construct' => 0,
@@ -610,6 +668,178 @@ return [[
 ], [
 
 0 => [],
-1 => 1663229967,
+1 => 1663253386,
+2 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'repositoryClass' => [
+                    'App\\Repository\\CotturaRepository',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+3 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Id'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Id')),
+            clone ($p['Doctrine\\ORM\\Mapping\\GeneratedValue'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\GeneratedValue')),
+            clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'type' => [
+                    2 => 'integer',
+                ],
+                'precision' => [
+                    2 => null,
+                ],
+                'scale' => [
+                    2 => null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+            $o[1],
+            $o[2],
+        ],
+        []
+    );
+},
+4 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'type' => [
+                    'string',
+                ],
+                'length' => [
+                    255,
+                ],
+                'precision' => [
+                    null,
+                ],
+                'scale' => [
+                    null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+5 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'type' => [
+                    'integer',
+                ],
+                'precision' => [
+                    null,
+                ],
+                'scale' => [
+                    null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+6 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ManyToOne'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOne')),
+            clone ($p['Doctrine\\ORM\\Mapping\\JoinColumn'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumn')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'targetEntity' => [
+                    'App\\Entity\\Pasta',
+                ],
+                'inversedBy' => [
+                    'cotturas',
+                ],
+                'nullable' => [
+                    1 => false,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+            $o[1],
+        ],
+        []
+    );
+},
+7 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'repositoryClass' => [
+                    'App\\Repository\\PastaRepository',
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+8 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\OneToMany'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToMany')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'mappedBy' => [
+                    'pasta',
+                ],
+                'targetEntity' => [
+                    'App\\Entity\\Cottura',
+                ],
+                'orphanRemoval' => [
+                    true,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
 
 ]];

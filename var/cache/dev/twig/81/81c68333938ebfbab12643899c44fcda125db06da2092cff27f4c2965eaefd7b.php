@@ -413,6 +413,6 @@ class __TwigTemplate_ed36741fee650e0c64fe137cfa7437c910b11a3e19a84020abd993f00af
         </div>
     {% endfor %}
 {% endblock %}
-", "@Debug/Profiler/dump.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
+", "@Debug/Profiler/dump.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
     }
 }

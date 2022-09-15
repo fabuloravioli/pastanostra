@@ -691,6 +691,6 @@ class __TwigTemplate_67d4bf0b00273f3f6e7ca2b6ca124f2512edf4aea12246cf46eb74e6e52
 {% block form_group_class -%}
     col-sm-10
 {%- endblock form_group_class %}
-", "bootstrap_5_horizontal_layout.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_5_horizontal_layout.html.twig");
+", "bootstrap_5_horizontal_layout.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/bootstrap_5_horizontal_layout.html.twig");
     }
 }

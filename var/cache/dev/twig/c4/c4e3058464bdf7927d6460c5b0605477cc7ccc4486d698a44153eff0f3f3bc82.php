@@ -99,6 +99,6 @@ class __TwigTemplate_008524caec2f8765adf0af7aea726147408a256fa4dd50a76bf0083daad
 .container.body_default {
     border-top: 8px solid #aaaaaa;
 }
-", "@email/zurb_2/notification/local.css", "/home/plazziac/php/pastanostra/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/local.css");
+", "@email/zurb_2/notification/local.css", "/home/plazziac/php/projet/pastanostra/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/local.css");
     }
 }

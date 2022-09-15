@@ -125,6 +125,6 @@ class __TwigTemplate_e83bb2d0f2d6b5ebd9f76815d50e26be7d15afd2ae3f5045a0084400b13
 .exception-message-wrapper .container {
     min-height: unset;
 }
-", "@WebProfiler/Collector/exception.css.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.css.twig");
+", "@WebProfiler/Collector/exception.css.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.css.twig");
     }
 }

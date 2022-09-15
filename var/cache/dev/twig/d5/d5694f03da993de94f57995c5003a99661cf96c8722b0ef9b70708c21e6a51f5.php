@@ -155,6 +155,6 @@ class __TwigTemplate_9eb191e4d7d7e8bd1a6aef519b46dacd72f9a05ad374daa8a83e9ac60ba
 {% block panel %}
     {{ render(controller('web_profiler.controller.router::panelAction', { token: token })) }}
 {% endblock %}
-", "@WebProfiler/Collector/router.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
+", "@WebProfiler/Collector/router.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
     }
 }

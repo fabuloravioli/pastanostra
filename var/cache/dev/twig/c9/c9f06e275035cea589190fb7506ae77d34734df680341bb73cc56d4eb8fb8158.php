@@ -122,6 +122,6 @@ class __TwigTemplate_de06ebfed6c63c35de08683ac1c8525fe1a0c9e7dc46ac6e8a4d500ab70
         {% endfor %}
     </tbody>
 </table>
-", "@WebProfiler/Profiler/table.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/table.html.twig");
+", "@WebProfiler/Profiler/table.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/table.html.twig");
     }
 }

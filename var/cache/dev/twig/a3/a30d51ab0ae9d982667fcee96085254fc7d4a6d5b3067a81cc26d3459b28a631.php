@@ -299,6 +299,6 @@ class __TwigTemplate_396e27f58b9db47ffc40deebba08ceb91d70dfbb25228665e5d3b7d4c34
         {{- form_rest(form) -}}
     </table>
 {%- endblock form_widget_compound -%}
-", "form_table_layout.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/form_table_layout.html.twig");
+", "form_table_layout.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/twig-bridge/Resources/views/Form/form_table_layout.html.twig");
     }
 }

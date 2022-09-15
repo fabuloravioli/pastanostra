@@ -447,6 +447,6 @@ class __TwigTemplate_3b791c3745c67b2c734d5345a5868263e119f484f017af5d530f5f1b9f5
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "/home/plazziac/php/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/settings.html.twig");
     }
 }

@@ -171,6 +171,6 @@ class __TwigTemplate_dad5c76d752aa7e8148faae0878d8691f5191c3cd19b6baecd632ac7436
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/home/plazziac/php/pastanostra/vendor/doctrine/doctrine-bundle/Resources/views/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/home/plazziac/php/projet/pastanostra/vendor/doctrine/doctrine-bundle/Resources/views/Collector/explain.html.twig");
     }
 }
