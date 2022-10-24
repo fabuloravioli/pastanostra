@@ -114,4 +114,9 @@ class Pasta
 
         return $this;
     }
+
+    public function __toString() {
+        return $this->nome . " (" . $this->origine . ")";
+    }
+
 }
