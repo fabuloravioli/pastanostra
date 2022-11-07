@@ -4,6 +4,17 @@
 
 return [
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin']], [], [], []],
+    'cottura_list' => [[], ['_controller' => 'App\\Controller\\CotturaController::listAction'], [], [['text', '/cottura/list']], [], [], []],
+    'cottura_show' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::showAction'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/cottura']], [], [], []],
+    'app_cottura_new' => [[], ['_controller' => 'App\\Controller\\CotturaController::new'], [], [['text', '/cottura/new']], [], [], []],
+    'cottura_edit' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::edit'], ['id' => '\\d+'], [['text', '/edit'], ['variable', '/', '\\d+', 'id', true], ['text', '/cottura']], [], [], []],
+    'app_cottura_delete' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/cottura']], [], [], []],
+    'home' => [[], ['_controller' => 'App\\Controller\\PastaController::indexAction'], [], [['text', '/pasta/']], [], [], []],
+    'pasta_list' => [[], ['_controller' => 'App\\Controller\\PastaController::listAction'], [], [['text', '/pasta/list']], [], [], []],
+    'pasta_show' => [['id'], ['_controller' => 'App\\Controller\\PastaController::showAction'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/pasta']], [], [], []],
+    'app_pasta_new' => [[], ['_controller' => 'App\\Controller\\PastaController::new'], [], [['text', '/pasta/new']], [], [], []],
+    'pasta_edit' => [['id'], ['_controller' => 'App\\Controller\\PastaController::edit'], ['id' => '\\d+'], [['text', '/edit'], ['variable', '/', '\\d+', 'id', true], ['text', '/pasta']], [], [], []],
+    'app_pasta_delete' => [['id'], ['_controller' => 'App\\Controller\\PastaController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/pasta']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     '_wdt' => [['token'], ['_controller' => 'web_profiler.controller.profiler::toolbarAction'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/_wdt']], [], [], []],
     '_profiler_home' => [[], ['_controller' => 'web_profiler.controller.profiler::homeAction'], [], [['text', '/_profiler/']], [], [], []],

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+
+<h1>pasta index</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>pasta</th>
+        <th>dimensioni</th>
+        <th>origine</th>
+        <th> &nbsp;</th>
+        <th>edition</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for pasta in pastas %}
+        <tr>
+            <td>{{pasta.id}}</td>
+            <td>{{pasta.nome}}</td>
+            <td>{{pasta.dimensioni}}</td>
+            <td>{{pasta.origine}}</td>
+            <td><a href="{{ path('pasta_show', {'id': pasta.id}) }}">show</a></td>
+            <td><a href="{{ path('pasta_edit', {'id': pasta.id}) }}">edition</a></td>
+        </tr>
+    {% endfor %} {# pastas #}
+
+
+
+    <a href="{{ path('app_pasta_new') }}">adding a task</a>
+
+    {% endblock %} {# body #}
+
+

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WAZAAAAAA!{% endblock %}
+
+{% block body %}
+
+    {% block main %}
+        <h1>Pasta</h1>
+
+        {% dump pasta %}
+
+        <table class="table">
+            <tbody>
+
+            <tr>
+                <th>Id</th>
+                <td>{{ pasta.id }}</td>
+            </tr>
+            <tr>
+                <th>pasta</th>
+                <td>{{ pasta.nome }}</td>
+            </tr>
+                <th>cottura</th>
+                {% for cottura in cotturas %}
+                    {% if cottura.pasta.nome == pasta.nome %}
+                        {% i += 1 %}
+                        <td><a href="{{ path('cottura_show', {'id' : cottura.id}) }}">{{ cottura.typo }}</a></td>
+                    {% endif %}
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <a href="{{ path('pasta_edit', {'id': pasta.id}) }}">edit</a>
+
+        <a href="{{ path('pasta_list') }}">back to list</a>
+
+    {% endblock %}
+{% endblock %}

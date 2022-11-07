@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WAZAAAAAA!{% endblock %}
+
+{% block body %}
+
+    {% block main %}
+        <h1>Cottura</h1>
+
+        {% dump cottura %}
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Pasta</th>
+                <td>{{ cottura.pasta }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ cottura.id }}</td>
+            </tr>
+            <tr>
+                <th>Typo</th>
+                <td>{{ cottura.typo }}</td>
+            </tr>
+            <tr>
+                <th>Tiempo</th>
+                <td>{{ cottura.tiempo }}</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+
+        <a href="{{ path('cottura_edit', {'id': cottura.id}) }}">edit</a>
+
+        <a href="{{ path('cottura_list') }}">back to list</a>
+
+    {% endblock %}
+{% endblock %}

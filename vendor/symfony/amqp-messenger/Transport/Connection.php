@@ -102,6 +102,11 @@ class Connection
      */
     private $amqpDelayExchange;
 
+    /**
+     * @var int
+     */
+    private $lastActivityTime = 0;
+
     public function __construct(array $connectionOptions, array $exchangeOptions, array $queuesOptions, AmqpFactory $amqpFactory = null)
     {
         if (!\extension_loaded('amqp')) {
@@ -195,11 +200,11 @@ class Connection
         self::validateOptions($amqpOptions);
 
         if (isset($parsedUrl['user'])) {
-            $amqpOptions['login'] = $parsedUrl['user'];
+            $amqpOptions['login'] = urldecode($parsedUrl['user']);
         }
 
         if (isset($parsedUrl['pass'])) {
-            $amqpOptions['password'] = $parsedUrl['pass'];
+            $amqpOptions['password'] = urldecode($parsedUrl['pass']);
         }
 
         if (!isset($amqpOptions['queues'])) {
@@ -346,6 +351,8 @@ class Connection
         $attributes['headers'] = array_merge($attributes['headers'] ?? [], $headers);
         $attributes['delivery_mode'] = $attributes['delivery_mode'] ?? 2;
         $attributes['timestamp'] = $attributes['timestamp'] ?? time();
+
+        $this->lastActivityTime = time();
 
         $exchange->publish(
             $body,
@@ -510,6 +517,11 @@ class Connection
                     }
                 );
             }
+
+            $this->lastActivityTime = time();
+        } elseif (0 < ($this->connectionOptions['heartbeat'] ?? 0) && time() > $this->lastActivityTime + 2 * $this->connectionOptions['heartbeat']) {
+            $disconnectMethod = 'true' === ($this->connectionOptions['persistent'] ?? 'false') ? 'pdisconnect' : 'disconnect';
+            $this->amqpChannel->getConnection()->{$disconnectMethod}();
         }
 
         return $this->amqpChannel;

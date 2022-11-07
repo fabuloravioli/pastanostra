@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit cottura{% endblock %}
+
+{% block main %}
+    <h1>Edit cottura</h1>
+
+    {{ include('cottura/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('cottura_list') }}">back to list</a>
+
+
+{% endblock %}

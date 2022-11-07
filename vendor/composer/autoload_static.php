@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
+class ComposerStaticInitf0d775b9316588dec97d17e9de50ca83
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -164,6 +164,10 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
             'Doctrine\\Bundle\\FixturesBundle\\' => 31,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
             'DeepCopy\\' => 9,
+        ),
+        'C' => 
+        array (
+            'Camurphy\\BootstrapMenuBundle\\' => 29,
         ),
         'A' => 
         array (
@@ -598,7 +602,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/src',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -616,6 +620,10 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Camurphy\\BootstrapMenuBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle',
+        ),
         'App\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -627,14 +635,26 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
     );
 
     public static $classMap = array (
+        'App\\Command\\AddCoturaCommand' => __DIR__ . '/../..' . '/src/Command/AddCoturaCommand.php',
+        'App\\Command\\AddPastaCommand' => __DIR__ . '/../..' . '/src/Command/AddPastaCommand.php',
         'App\\Command\\ListPastasCommand' => __DIR__ . '/../..' . '/src/Command/ListPastasCommand.php',
+        'App\\Command\\ShowPastaCommand' => __DIR__ . '/../..' . '/src/Command/ShowPastaCommand.php',
+        'App\\Controller\\Admin\\DashboardController' => __DIR__ . '/../..' . '/src/Controller/Admin/DashboardController.php',
+        'App\\Controller\\PastaController' => __DIR__ . '/../..' . '/src/Controller/PastaController.php',
         'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
         'App\\Entity\\Cottura' => __DIR__ . '/../..' . '/src/Entity/Cottura.php',
         'App\\Entity\\Pasta' => __DIR__ . '/../..' . '/src/Entity/Pasta.php',
+        'App\\Form\\PastaType' => __DIR__ . '/../..' . '/src/Form/PastaType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\CotturaRepository' => __DIR__ . '/../..' . '/src/Repository/CotturaRepository.php',
         'App\\Repository\\PastaRepository' => __DIR__ . '/../..' . '/src/Repository/PastaRepository.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Camurphy\\BootstrapMenuBundle\\BootstrapMenuBundle' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/BootstrapMenuBundle.php',
+        'Camurphy\\BootstrapMenuBundle\\DependencyInjection\\BootstrapMenuExtension' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/DependencyInjection/BootstrapMenuExtension.php',
+        'Camurphy\\BootstrapMenuBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/DependencyInjection/Configuration.php',
+        'Camurphy\\BootstrapMenuBundle\\Hook\\BypassFinalHook' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/Hook/BypassFinalHook.php',
+        'Camurphy\\BootstrapMenuBundle\\Tests\\Twig\\Extension\\MenuExtensionTest' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/Tests/Twig/Extension/MenuExtensionTest.php',
+        'Camurphy\\BootstrapMenuBundle\\Twig\\Extension\\MenuExtension' => __DIR__ . '/..' . '/camurphy/bootstrap-menu-bundle/Twig/Extension/MenuExtension.php',
         'Collator' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
@@ -791,6 +811,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\Common\\Collections\\Expr\\ExpressionVisitor' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/Expr/ExpressionVisitor.php',
         'Doctrine\\Common\\Collections\\Expr\\Value' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/Expr/Value.php',
         'Doctrine\\Common\\Collections\\ExpressionBuilder' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/ExpressionBuilder.php',
+        'Doctrine\\Common\\Collections\\ReadableCollection' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/ReadableCollection.php',
         'Doctrine\\Common\\Collections\\Selectable' => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections/Selectable.php',
         'Doctrine\\Common\\CommonException' => __DIR__ . '/..' . '/doctrine/common/src/CommonException.php',
         'Doctrine\\Common\\Comparable' => __DIR__ . '/..' . '/doctrine/common/src/Comparable.php',
@@ -816,9 +837,9 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\Common\\DataFixtures\\SharedFixtureInterface' => __DIR__ . '/..' . '/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/SharedFixtureInterface.php',
         'Doctrine\\Common\\DataFixtures\\Sorter\\TopologicalSorter' => __DIR__ . '/..' . '/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/Sorter/TopologicalSorter.php',
         'Doctrine\\Common\\DataFixtures\\Sorter\\Vertex' => __DIR__ . '/..' . '/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/Sorter/Vertex.php',
-        'Doctrine\\Common\\EventArgs' => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common/EventArgs.php',
-        'Doctrine\\Common\\EventManager' => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common/EventManager.php',
-        'Doctrine\\Common\\EventSubscriber' => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common/EventSubscriber.php',
+        'Doctrine\\Common\\EventArgs' => __DIR__ . '/..' . '/doctrine/event-manager/src/EventArgs.php',
+        'Doctrine\\Common\\EventManager' => __DIR__ . '/..' . '/doctrine/event-manager/src/EventManager.php',
+        'Doctrine\\Common\\EventSubscriber' => __DIR__ . '/..' . '/doctrine/event-manager/src/EventSubscriber.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php',
         'Doctrine\\Common\\Proxy\\AbstractProxyFactory' => __DIR__ . '/..' . '/doctrine/common/src/Proxy/AbstractProxyFactory.php',
         'Doctrine\\Common\\Proxy\\Autoloader' => __DIR__ . '/..' . '/doctrine/common/src/Proxy/Autoloader.php',
@@ -861,6 +882,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\DBAL\\Driver\\AbstractSQLServerDriver' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/AbstractSQLServerDriver.php',
         'Doctrine\\DBAL\\Driver\\AbstractSQLServerDriver\\Exception\\PortWithoutHost' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/AbstractSQLServerDriver/Exception/PortWithoutHost.php',
         'Doctrine\\DBAL\\Driver\\AbstractSQLiteDriver' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/AbstractSQLiteDriver.php',
+        'Doctrine\\DBAL\\Driver\\AbstractSQLiteDriver\\Middleware\\EnableForeignKeys' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/AbstractSQLiteDriver/Middleware/EnableForeignKeys.php',
         'Doctrine\\DBAL\\Driver\\Connection' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/Connection.php',
         'Doctrine\\DBAL\\Driver\\Exception' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/Exception.php',
         'Doctrine\\DBAL\\Driver\\Exception\\UnknownParameterType' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/Exception/UnknownParameterType.php',
@@ -907,6 +929,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\DBAL\\Driver\\OCI8\\Exception\\SequenceDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/Exception/SequenceDoesNotExist.php',
         'Doctrine\\DBAL\\Driver\\OCI8\\Exception\\UnknownParameterIndex' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/Exception/UnknownParameterIndex.php',
         'Doctrine\\DBAL\\Driver\\OCI8\\ExecutionMode' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/ExecutionMode.php',
+        'Doctrine\\DBAL\\Driver\\OCI8\\Middleware\\InitializeSession' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/Middleware/InitializeSession.php',
         'Doctrine\\DBAL\\Driver\\OCI8\\Result' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/Result.php',
         'Doctrine\\DBAL\\Driver\\OCI8\\Statement' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/OCI8/Statement.php',
         'Doctrine\\DBAL\\Driver\\PDO\\Connection' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/PDO/Connection.php',
@@ -926,6 +949,11 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\DBAL\\Driver\\SQLSrv\\Exception\\Error' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLSrv/Exception/Error.php',
         'Doctrine\\DBAL\\Driver\\SQLSrv\\Result' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLSrv/Result.php',
         'Doctrine\\DBAL\\Driver\\SQLSrv\\Statement' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLSrv/Statement.php',
+        'Doctrine\\DBAL\\Driver\\SQLite3\\Connection' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLite3/Connection.php',
+        'Doctrine\\DBAL\\Driver\\SQLite3\\Driver' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLite3/Driver.php',
+        'Doctrine\\DBAL\\Driver\\SQLite3\\Exception' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLite3/Exception.php',
+        'Doctrine\\DBAL\\Driver\\SQLite3\\Result' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLite3/Result.php',
+        'Doctrine\\DBAL\\Driver\\SQLite3\\Statement' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/SQLite3/Statement.php',
         'Doctrine\\DBAL\\Driver\\ServerInfoAwareConnection' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/ServerInfoAwareConnection.php',
         'Doctrine\\DBAL\\Driver\\Statement' => __DIR__ . '/..' . '/doctrine/dbal/src/Driver/Statement.php',
         'Doctrine\\DBAL\\Event\\ConnectionEventArgs' => __DIR__ . '/..' . '/doctrine/dbal/src/Event/ConnectionEventArgs.php',
@@ -1051,7 +1079,20 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'Doctrine\\DBAL\\Schema\\Comparator' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Comparator.php',
         'Doctrine\\DBAL\\Schema\\Constraint' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Constraint.php',
         'Doctrine\\DBAL\\Schema\\DB2SchemaManager' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/DB2SchemaManager.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\ColumnAlreadyExists' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/ColumnAlreadyExists.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\ColumnDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/ColumnDoesNotExist.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\ForeignKeyDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/ForeignKeyDoesNotExist.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\IndexAlreadyExists' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/IndexAlreadyExists.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\IndexDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/IndexDoesNotExist.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\IndexNameInvalid' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/IndexNameInvalid.php',
         'Doctrine\\DBAL\\Schema\\Exception\\InvalidTableName' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/InvalidTableName.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\NamedForeignKeyRequired' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/NamedForeignKeyRequired.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\NamespaceAlreadyExists' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/NamespaceAlreadyExists.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\SequenceAlreadyExists' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/SequenceAlreadyExists.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\SequenceDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/SequenceDoesNotExist.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\TableAlreadyExists' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/TableAlreadyExists.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\TableDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/TableDoesNotExist.php',
+        'Doctrine\\DBAL\\Schema\\Exception\\UniqueConstraintDoesNotExist' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/UniqueConstraintDoesNotExist.php',
         'Doctrine\\DBAL\\Schema\\Exception\\UnknownColumnOption' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Exception/UnknownColumnOption.php',
         'Doctrine\\DBAL\\Schema\\ForeignKeyConstraint' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/ForeignKeyConstraint.php',
         'Doctrine\\DBAL\\Schema\\Identifier' => __DIR__ . '/..' . '/doctrine/dbal/src/Schema/Identifier.php',
@@ -2346,6 +2387,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\MethodTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/MethodTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\MethodTagValueParameterNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/MethodTagValueParameterNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\MixinTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/MixinTagValueNode.php',
+        'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\ParamOutTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/ParamOutTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\ParamTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/ParamTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocChildNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/PhpDocChildNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/PhpDocNode.php',
@@ -2354,6 +2396,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocTextNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/PhpDocTextNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PropertyTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/PropertyTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\ReturnTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/ReturnTagValueNode.php',
+        'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\SelfOutTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/SelfOutTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\TemplateTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/TemplateTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\ThrowsTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/ThrowsTagValueNode.php',
         'PHPStan\\PhpDocParser\\Ast\\PhpDoc\\TypeAliasImportTagValueNode' => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src/Ast/PhpDoc/TypeAliasImportTagValueNode.php',
@@ -2687,6 +2730,7 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
         'PHPUnit\\Util\\Annotation\\DocBlock' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Annotation/DocBlock.php',
         'PHPUnit\\Util\\Annotation\\Registry' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Annotation/Registry.php',
         'PHPUnit\\Util\\Blacklist' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Blacklist.php',
+        'PHPUnit\\Util\\Cloner' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Cloner.php',
         'PHPUnit\\Util\\Color' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Color.php',
         'PHPUnit\\Util\\ErrorHandler' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/ErrorHandler.php',
         'PHPUnit\\Util\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Exception.php',
@@ -6804,9 +6848,9 @@ class ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2ba3ed666ae62c5f57738d60b6d57580::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf0d775b9316588dec97d17e9de50ca83::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf0d775b9316588dec97d17e9de50ca83::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitf0d775b9316588dec97d17e9de50ca83::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -22,6 +22,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
+      <parameter key="BootstrapMenuBundle">Camurphy\BootstrapMenuBundle\BootstrapMenuBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -75,6 +76,10 @@
       <parameter key="EasyAdminBundle" type="collection">
         <parameter key="path">/home/plazziac/php/projet/pastanostra/vendor/easycorp/easyadmin-bundle/src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
+      </parameter>
+      <parameter key="BootstrapMenuBundle" type="collection">
+        <parameter key="path">/home/plazziac/php/projet/pastanostra/vendor/camurphy/bootstrap-menu-bundle</parameter>
+        <parameter key="namespace">Camurphy\BootstrapMenuBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -222,6 +227,7 @@
     <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>bootstrap_5_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">/home/plazziac/php/projet/pastanostra/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -255,6 +261,29 @@
       </parameter>
     </parameter>
     <parameter key="easyadmin.config" type="collection"/>
+    <parameter key="bootstrap_menu.version">5</parameter>
+    <parameter key="bootstrap_menu.menus" type="collection">
+      <parameter key="main" type="collection">
+        <parameter key="items" type="collection">
+          <parameter key="pastas" type="collection">
+            <parameter key="label">PASTAS</parameter>
+            <parameter key="route">pasta_list</parameter>
+            <parameter key="is_divider">false</parameter>
+            <parameter key="route_parameters" type="collection"/>
+            <parameter key="roles" type="collection"/>
+            <parameter key="items" type="collection"/>
+          </parameter>
+          <parameter key="cottura" type="collection">
+            <parameter key="label">Cottura</parameter>
+            <parameter key="route">cottura_list</parameter>
+            <parameter key="is_divider">false</parameter>
+            <parameter key="route_parameters" type="collection"/>
+            <parameter key="roles" type="collection"/>
+            <parameter key="items" type="collection"/>
+          </parameter>
+        </parameter>
+      </parameter>
+    </parameter>
     <parameter key="maker.compatible_check.doctrine.supports_attributes">true</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
@@ -406,8 +435,28 @@
         <argument type="service" id=".service_locator.tLJfFGz.App\Controller\Admin\DashboardController"/>
       </call>
     </service>
+    <service id="App\Controller\CotturaController" class="App\Controller\CotturaController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\CotturaController"/>
+      </call>
+    </service>
+    <service id="App\Controller\PastaController" class="App\Controller\PastaController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\PastaController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\PastaType" class="App\Form\PastaType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -1190,10 +1239,13 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\CotturaType</argument>
+        <argument>App\Form\PastaType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1537,7 +1589,13 @@
       <deprecated package="symfony/framework-bundle" version="5.3">The "%service_id%" service is deprecated, use "assets.json_manifest_version_strategy" instead.</deprecated>
     </service>
     <service id="assets._default_package" class="Symfony\Component\Asset\PathPackage">
-      <argument></argument>
+      <argument>/</argument>
+      <argument type="service" id="assets.empty_version_strategy"/>
+      <argument type="service" id="assets.context"/>
+    </service>
+    <service id="assets._package_startbootstrap" class="Symfony\Component\Asset\PathPackage">
+      <tag name="assets.package" package="startbootstrap"/>
+      <argument>/startbootstrap-bare-gh-pages</argument>
       <argument type="service" id="assets.empty_version_strategy"/>
       <argument type="service" id="assets.context"/>
     </service>
@@ -1939,6 +1997,11 @@
             <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/security-core/Resources/translations/security.uk.xlf</argument>
             <argument>/home/plazziac/php/projet/pastanostra/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.uk.php</argument>
           </argument>
+          <argument key="ur" type="collection">
+            <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/validator/Resources/translations/validators.ur.xlf</argument>
+            <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/form/Resources/translations/validators.ur.xlf</argument>
+            <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/security-core/Resources/translations/security.ur.xlf</argument>
+          </argument>
           <argument key="uz" type="collection">
             <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/validator/Resources/translations/validators.uz.xlf</argument>
             <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/form/Resources/translations/validators.uz.xlf</argument>
@@ -1982,6 +2045,7 @@
           <argument>/home/plazziac/php/projet/pastanostra/vendor/symfony/maker-bundle/src/translations</argument>
           <argument>/home/plazziac/php/projet/pastanostra/vendor/sensio/framework-extra-bundle/src/translations</argument>
           <argument>/home/plazziac/php/projet/pastanostra/vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+          <argument>/home/plazziac/php/projet/pastanostra/vendor/camurphy/bootstrap-menu-bundle/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2002,6 +2066,7 @@
             <argument>vendor/symfony/maker-bundle/src/translations</argument>
             <argument>vendor/sensio/framework-extra-bundle/src/translations</argument>
             <argument>vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+            <argument>vendor/camurphy/bootstrap-menu-bundle/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -3124,7 +3189,7 @@
     <service id="serializer.mapping.class_discriminator_resolver" class="Symfony\Component\Serializer\Mapping\ClassDiscriminatorFromClassMetadata">
       <argument type="service" id="serializer.mapping.class_metadata_factory"/>
     </service>
-    <service id="serializer.normalizer.constraint_violation_list" class="Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer">
+    <service id="serializer.normalizer.constraint_violation_list" class="Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer" autowire="true">
       <tag name="serializer.normalizer" priority="-915"/>
       <argument type="collection"/>
       <argument type="service" id="serializer.name_converter.metadata_aware"/>
@@ -3173,7 +3238,6 @@
       <argument type="service" id="property_info" on-invalid="ignore"/>
       <argument type="service" id="serializer.mapping.class_discriminator_resolver" on-invalid="ignore"/>
       <argument>null</argument>
-      <argument type="collection"/>
     </service>
     <service id="serializer.normalizer.property" class="Symfony\Component\Serializer\Normalizer\PropertyNormalizer">
       <argument type="service" id="serializer.mapping.class_metadata_factory"/>
@@ -3181,7 +3245,6 @@
       <argument type="service" id="property_info" on-invalid="ignore"/>
       <argument type="service" id="serializer.mapping.class_discriminator_resolver" on-invalid="ignore"/>
       <argument>null</argument>
-      <argument type="collection"/>
     </service>
     <service id="serializer.denormalizer.array" class="Symfony\Component\Serializer\Normalizer\ArrayDenormalizer">
       <tag name="serializer.normalizer" priority="-990"/>
@@ -3219,6 +3282,8 @@
     </service>
     <service id="serializer.encoder.json" class="Symfony\Component\Serializer\Encoder\JsonEncoder">
       <tag name="serializer.encoder"/>
+      <argument>null</argument>
+      <argument>null</argument>
     </service>
     <service id="serializer.encoder.yaml" class="Symfony\Component\Serializer\Encoder\YamlEncoder">
       <tag name="serializer.encoder"/>
@@ -3448,7 +3513,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.ZWFYuib"/>
+      <argument type="service" id=".service_locator.vkv2C8O"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4967,6 +5032,9 @@
       <call method="addExtension">
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension"/>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="camurphy.bootstrap_menu.twig.menu_extension"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="twig.app_variable"/>
@@ -5073,6 +5141,14 @@
       <call method="addPath">
         <argument>/home/plazziac/php/projet/pastanostra/vendor/easycorp/easyadmin-bundle/src/Resources/views</argument>
         <argument>!EasyAdmin</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/plazziac/php/projet/pastanostra/vendor/camurphy/bootstrap-menu-bundle/Resources/views</argument>
+        <argument>BootstrapMenu</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/plazziac/php/projet/pastanostra/vendor/camurphy/bootstrap-menu-bundle/Resources/views</argument>
+        <argument>!BootstrapMenu</argument>
       </call>
       <call method="addPath">
         <argument>/home/plazziac/php/projet/pastanostra/templates</argument>
@@ -6667,6 +6743,11 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
       <deprecated package="easycorp/easyadmin-bundle" version="3.2.0">The "%service_id%" service is deprecated, use "EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator" instead.</deprecated>
     </service>
+    <service id="camurphy.bootstrap_menu.twig.menu_extension" class="Camurphy\BootstrapMenuBundle\Twig\Extension\MenuExtension">
+      <tag name="twig.extension"/>
+      <argument>%bootstrap_menu.menus%</argument>
+      <argument>5</argument>
+    </service>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\AddCoturaCommand" class="App\Command\AddCoturaCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\AddCoturaCommand" class="App\Command\AddCoturaCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\AddPastaCommand" class="App\Command\AddPastaCommand" autowire="true" abstract="true"/>
@@ -6679,8 +6760,18 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PastaType" class="App\Form\PastaType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\PastaType" class="App\Form\PastaType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PastaRepository" class="App\Repository\PastaRepository" autowire="true" abstract="true"/>
@@ -7091,10 +7182,65 @@
         <argument key="user" type="service_closure" id=".errored..service_locator.q6hA_O0.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.3WY.16h" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.T7xmfzk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ocIBVJa" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="cottura" type="service_closure" id=".errored..service_locator.ocIBVJa.App\Entity\Cottura"/>
+      </argument>
+    </service>
+    <service id=".service_locator.GH9OT0H" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="cotturaRepository" type="service_closure" id="App\Repository\CotturaRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.O_Y87wA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="cottura" type="service_closure" id=".errored..service_locator.O_Y87wA.App\Entity\Cottura"/>
+        <argument key="cotturaRepository" type="service_closure" id="App\Repository\CotturaRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.veWjOQO" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+        <argument key="pasta" type="service_closure" id=".errored..service_locator.veWjOQO.App\Entity\Pasta"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ShDxeXy" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="pastaRepository" type="service_closure" id="App\Repository\PastaRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.JxKhRXN" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="pasta" type="service_closure" id=".errored..service_locator.JxKhRXN.App\Entity\Pasta"/>
+        <argument key="pastaRepository" type="service_closure" id="App\Repository\PastaRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.CTFF.uf" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
+        <argument key="App\Controller\CotturaController::delete" type="service_closure" id=".service_locator.O_Y87wA"/>
+        <argument key="App\Controller\CotturaController::edit" type="service_closure" id=".service_locator.O_Y87wA"/>
+        <argument key="App\Controller\CotturaController::listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\CotturaController::new" type="service_closure" id=".service_locator.GH9OT0H"/>
+        <argument key="App\Controller\CotturaController::showAction" type="service_closure" id=".service_locator.ocIBVJa"/>
+        <argument key="App\Controller\PastaController::delete" type="service_closure" id=".service_locator.JxKhRXN"/>
+        <argument key="App\Controller\PastaController::edit" type="service_closure" id=".service_locator.JxKhRXN"/>
+        <argument key="App\Controller\PastaController::listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\PastaController::new" type="service_closure" id=".service_locator.ShDxeXy"/>
+        <argument key="App\Controller\PastaController::showAction" type="service_closure" id=".service_locator.veWjOQO"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
@@ -7102,6 +7248,16 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
+        <argument key="App\Controller\CotturaController:delete" type="service_closure" id=".service_locator.O_Y87wA"/>
+        <argument key="App\Controller\CotturaController:edit" type="service_closure" id=".service_locator.O_Y87wA"/>
+        <argument key="App\Controller\CotturaController:listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\CotturaController:new" type="service_closure" id=".service_locator.GH9OT0H"/>
+        <argument key="App\Controller\CotturaController:showAction" type="service_closure" id=".service_locator.ocIBVJa"/>
+        <argument key="App\Controller\PastaController:delete" type="service_closure" id=".service_locator.JxKhRXN"/>
+        <argument key="App\Controller\PastaController:edit" type="service_closure" id=".service_locator.JxKhRXN"/>
+        <argument key="App\Controller\PastaController:listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\PastaController:new" type="service_closure" id=".service_locator.ShDxeXy"/>
+        <argument key="App\Controller\PastaController:showAction" type="service_closure" id=".service_locator.veWjOQO"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:terminate" type="service_closure" id=".service_locator.KfwZsne"/>
@@ -7176,9 +7332,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.ZWFYuib" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.vkv2C8O" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\CotturaType" type="service_closure" id="App\Form\CotturaType"/>
+        <argument key="App\Form\PastaType" type="service_closure" id="App\Form\PastaType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType"/>
@@ -7563,6 +7721,37 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.tLJfFGz" method="withContext"/>
     </service>
+    <service id=".service_locator.GNc8e5B" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine" on-invalid="ignore"/>
+        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service_closure" id="http_kernel" on-invalid="ignore"/>
+        <argument key="message_bus" type="service_closure" id="debug.traced.messenger.bus.default" on-invalid="ignore"/>
+        <argument key="messenger.default_bus" type="service_closure" id="debug.traced.messenger.bus.default" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service_closure" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
+        <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
+        <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
+        <argument key="serializer" type="service_closure" id="serializer" on-invalid="ignore"/>
+        <argument key="session" type="service_closure" id=".session.deprecated" on-invalid="ignore"/>
+        <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\CotturaController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CotturaController"/>
+      <argument>App\Controller\CotturaController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\PastaController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PastaController"/>
+      <argument>App\Controller\PastaController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
     <service id=".service_locator.J4b.DPX" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7747,12 +7936,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.3WY.16h"/>
+      <argument type="service" id=".service_locator.CTFF.uf"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.3WY.16h"/>
+      <argument type="service" id=".service_locator.CTFF.uf"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7782,6 +7971,10 @@
     <service id=".errored..service_locator.KfwZsne.Symfony\Component\HttpFoundation\Response" class="Symfony\Component\HttpFoundation\Response"/>
     <service id=".errored..service_locator.KfbR3DY.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
     <service id=".errored..service_locator.q6hA_O0.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.ocIBVJa.App\Entity\Cottura" class="App\Entity\Cottura"/>
+    <service id=".errored..service_locator.O_Y87wA.App\Entity\Cottura" class="App\Entity\Cottura"/>
+    <service id=".errored..service_locator.veWjOQO.App\Entity\Pasta" class="App\Entity\Pasta"/>
+    <service id=".errored..service_locator.JxKhRXN.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".App\Command\AddCoturaCommand.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>app:add-cotura</argument>
       <argument type="collection"/>
@@ -8653,6 +8846,7 @@
     <service id="Symfony\Contracts\Cache\TagAwareCacheInterface" alias="cache.app.taggable"/>
     <service id="Symfony\Contracts\Translation\TranslatorInterface" alias="translator.data_collector"/>
     <service id="Symfony\Component\Asset\Packages" alias="assets.packages"/>
+    <service id="Symfony\Component\Asset\PackageInterface $startbootstrapPackage" alias="assets._package_startbootstrap"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
@@ -8788,7 +8982,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.3WY.16h"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.CTFF.uf"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8813,12 +9007,14 @@
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.CzNLYfF" alias=".service_locator.3WY.16h"/>
+    <service id=".service_locator.5RT0dss" alias=".service_locator.veWjOQO"/>
+    <service id=".service_locator.R7Jwu54" alias=".service_locator.CTFF.uf"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.3l1LkXo" alias=".service_locator.ZWFYuib"/>
+    <service id=".service_locator.XWFCQrE" alias=".service_locator.vkv2C8O"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.wPLAlW_" alias=".service_locator.tLJfFGz"/>
+    <service id=".service_locator.W9y3dzm" alias=".service_locator.GNc8e5B"/>
     <service id="validator" alias="debug.validator" public="true"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
     <service id="controller_resolver" alias="debug.controller_resolver"/>
@@ -8845,7 +9041,15 @@
     <service id=".service_locator._5g_Wvc" alias=".service_locator.KfwZsne"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
     <service id=".service_locator.vS1lpro" alias=".service_locator.q6hA_O0"/>
+    <service id=".service_locator.T8.TLJR" alias=".service_locator.T7xmfzk"/>
+    <service id=".service_locator.0gngdaF" alias=".service_locator.ocIBVJa"/>
+    <service id=".service_locator.DMayLTL" alias=".service_locator.GH9OT0H"/>
+    <service id=".service_locator.YUbEmEq" alias=".service_locator.O_Y87wA"/>
+    <service id=".service_locator.se.5.ui" alias=".service_locator.veWjOQO"/>
+    <service id=".service_locator.nZnjV2Z" alias=".service_locator.ShDxeXy"/>
+    <service id=".service_locator.fbHjLRN" alias=".service_locator.JxKhRXN"/>
     <service id=".service_locator.XCOOvJG" alias=".service_locator.tLJfFGz"/>
+    <service id=".service_locator.Wd_D6Iy" alias=".service_locator.GNc8e5B"/>
     <service id=".service_locator.L0rFhJm" alias=".service_locator.GVyCdgr"/>
     <service id=".service_locator.9YCWxeJ" alias=".service_locator.dw8O4oN"/>
     <service id=".service_locator.aa1PbBb" alias=".service_locator.nLgZj7R"/>

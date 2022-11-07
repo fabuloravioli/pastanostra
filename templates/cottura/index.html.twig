@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+
+<h1>cottura index</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>typo</th>
+        <th>tiempo</th>
+        <th> &nbsp;</th>
+        <th>edition</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for cottura in cotturas %}
+        <tr>
+            <td>{{cottura.id}}</td>
+            <td>{{cottura.typo}}</td>
+            <td>{{cottura.tiempo}}</td>
+            <td><a href="{{ path('cottura_show', {'id': cottura.id}) }}">show</a></td>
+            <td><a href="{{ path('cottura_edit', {'id': cottura.id}) }}">edition</a></td>
+        </tr>
+    {% endfor %} {# cotturas #}
+
+
+
+    <a href="{{ path('app_cottura_new') }}">adding a task</a>
+
+    {% endblock %} {# body #}
+
+

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit pasta{% endblock %}
+
+{% block main %}
+    <h1>Edit pasta</h1>
+
+    {{ include('pasta/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pasta_list') }}">back to list</a>
+
+
+{% endblock %}

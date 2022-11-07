@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New cottura{% endblock %}
+
+{% block main %}
+    <h1>Create new cottura</h1>
+
+    {{ include('cottura/_form.html.twig') }}
+
+    <a href="{{ path('app_cottura_new') }}">back to list</a>
+{% endblock %}
