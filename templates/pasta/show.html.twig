@@ -21,19 +21,24 @@
                 <td>{{ pasta.nome }}</td>
             </tr>
                 <th>cottura</th>
-                {% for cottura in cotturas %}
-                    {% if cottura.pasta.nome == pasta.nome %}
-                        {% i += 1 %}
-                        <td><a href="{{ path('cottura_show', {'id' : cottura.id}) }}">{{ cottura.typo }}</a></td>
-                    {% endif %}
+                <td>
+                    <ul>
+                {% for cottura in pasta.cotturas %}
+                        <a href="{{ path('cottura_show', {'id' : cottura.id}) }}">{{ cottura.typo }}</a>
+                {% else %}
+                    pas de cuisson
                 {% endfor %}
-
+                    </ul>
+                    <a href="{{ path('pasta_show', {'id' : pasta.id}) }}">add new cottura</a>
+                </td>
             </tbody>
         </table>
 
         <a href="{{ path('pasta_edit', {'id': pasta.id}) }}">edit</a>
 
         <a href="{{ path('pasta_list') }}">back to list</a>
+
+        <a href="{{ path('cottura_newinpasta', {'id' : pasta.id}) }}">add a cottura</a>
 
     {% endblock %}
 {% endblock %}

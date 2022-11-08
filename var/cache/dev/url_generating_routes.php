@@ -9,6 +9,7 @@ return [
     'app_cottura_new' => [[], ['_controller' => 'App\\Controller\\CotturaController::new'], [], [['text', '/cottura/new']], [], [], []],
     'cottura_edit' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::edit'], ['id' => '\\d+'], [['text', '/edit'], ['variable', '/', '\\d+', 'id', true], ['text', '/cottura']], [], [], []],
     'app_cottura_delete' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/cottura']], [], [], []],
+    'cottura_newinpasta' => [['id'], ['_controller' => 'App\\Controller\\CotturaController::newInPasta'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/cottura/newinpasta']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\PastaController::indexAction'], [], [['text', '/pasta/']], [], [], []],
     'pasta_list' => [[], ['_controller' => 'App\\Controller\\PastaController::listAction'], [], [['text', '/pasta/list']], [], [], []],
     'pasta_show' => [['id'], ['_controller' => 'App\\Controller\\PastaController::showAction'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/pasta']], [], [], []],

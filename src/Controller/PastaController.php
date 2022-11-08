@@ -60,11 +60,11 @@ class PastaController extends AbstractController
     public function showAction(Pasta $pasta, ManagerRegistry $doctrine): Response
     {
 
-        $criteria = new \Doctrine\Common\Collections\Criteria();
-        $criteria->where(\Doctrine\Common\Collections\Criteria::expr()->eq('pasta', $pasta->getNome()));
+        //$criteria = new \Doctrine\Common\Collections\Criteria();
+        //$criteria->where(\Doctrine\Common\Collections\Criteria::expr()->eq('pasta', $pasta->getNome()));
 
-        $entityManager= $doctrine->getManager();
-        $cotturas = $entityManager->getRepository(cottura::class)->findBy([$criteria]);
+        //$entityManager= $doctrine->getManager();
+        //$cotturas = $entityManager->getRepository(cottura::class)->findBy([$criteria]);
 
         $entityManager= $doctrine->getManager();
         $cotturas = $entityManager->getRepository(cottura::class)->findAll();
@@ -138,7 +138,6 @@ class PastaController extends AbstractController
 
         return $this->redirectToRoute('pasta_list', [], Response::HTTP_SEE_OTHER);
     }
-
 
 
 }

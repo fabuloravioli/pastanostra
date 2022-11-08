@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 use App\Entity\Cottura;
+use App\Entity\Pasta;
+use App\Form\PastaType;
 use App\Repository\CotturaRepository;
 use App\Form\CotturaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +18,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\EntityManagerInterface;
+
 
 /**
  * Controleur cottura
@@ -29,7 +33,7 @@ class CotturaController extends AbstractController
     public function indexAction()
     {
         return $this->render('index.html.twig',
-            [ 'welcome' => "théophole je t'aime" ]
+            ['welcome' => "théophole je t'aime"]
         );
     }
 
@@ -40,13 +44,15 @@ class CotturaController extends AbstractController
      */
     public function listAction(ManagerRegistry $doctrine): Response
     {
-        $entityManager= $doctrine->getManager();
+        $entityManager = $doctrine->getManager();
         $cotturas = $entityManager->getRepository(cottura::class)->findAll();
+        $pastas = $entityManager->getRepository(Pasta::class)->findAll();
 
         dump($cotturas);
 
         return $this->render('cottura/index.html.twig',
-            [ 'cotturas' => $cotturas ]
+            ['cotturas' => $cotturas,
+                'pastas' => $pastas]
         );
     }
 
@@ -58,7 +64,7 @@ class CotturaController extends AbstractController
     public function showAction(cottura $cottura): Response
     {
         return $this->render('cottura/show.html.twig',
-            [ 'cottura' => $cottura ]
+            ['cottura' => $cottura]
         );
     }
 
@@ -119,13 +125,43 @@ class CotturaController extends AbstractController
      */
     public function delete(Request $request, cottura $cottura, cotturaRepository $cotturaRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cottura->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $cottura->getId(), $request->request->get('_token'))) {
             $cotturaRepository->remove($cottura, true);
         }
 
         return $this->redirectToRoute('cottura_list', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @Route("/newinpasta/{id}", name="cottura_newinpasta", methods={"GET", "POST"})
+     */
+    public function newInPasta(Request $request, cotturaRepository $cotturaRepository, Pasta $pasta): Response
+    {
+        $cottura = new Cottura();
+        // already set a pasta, so as to not need add that field in the form (in CotturaType)
+        $cottura->setPasta($pasta);
 
+        $form = $this->createForm(CotturaType::class, $cottura,
+        ['display_pasta' => false,
+            ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cotturaRepository->add($cottura, true);
+
+            return $this->redirectToRoute('pasta_show', array('id' => $pasta->getId()));
+            $entityManager->persist($cottura);
+            $entityManager->flush();
+
+        }
+
+        return $this->render('cottura/newinpasta.html.twig', [
+            'pasta' => $pasta,
+            'cottura' => $cottura,
+            'form' => $form->createView(),
+        ]);
+
+    }
 
 }
+

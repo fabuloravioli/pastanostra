@@ -13,6 +13,7 @@
         <th>Id</th>
         <th>typo</th>
         <th>tiempo</th>
+        <th>pasta</th>
         <th> &nbsp;</th>
         <th>edition</th>
     </tr>
@@ -24,6 +25,15 @@
             <td>{{cottura.id}}</td>
             <td>{{cottura.typo}}</td>
             <td>{{cottura.tiempo}}</td>
+            {% if cottura.pasta %}
+                {% for pasta in pastas %}
+                    {% if pasta.nome == cottura.pasta.nome %}
+                        <td>{{ cottura.pasta.nome }}</td>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <td>no pastas</td>
+            {% endif %}
             <td><a href="{{ path('cottura_show', {'id': cottura.id}) }}">show</a></td>
             <td><a href="{{ path('cottura_edit', {'id': cottura.id}) }}">edition</a></td>
         </tr>

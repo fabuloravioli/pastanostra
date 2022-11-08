@@ -11,8 +11,10 @@ class CotturaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if ($options['display_pasta']){
+            $builder->add('pasta');
+        }
         $builder
-            ->add('pasta')
             ->add('typo')
             ->add('tiempo')
         ;
@@ -22,6 +24,8 @@ class CotturaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Cottura::class,
+            'display_pasta' => true
         ]);
+        $resolver->SetAllowedTypes('display_pasta', 'bool');
     }
 }
