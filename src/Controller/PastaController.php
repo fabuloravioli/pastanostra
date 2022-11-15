@@ -173,6 +173,20 @@ class PastaController extends AbstractController
 
     }
 
+    /**
+     * @Route("/favoris", name = "favoris", methods="GET")
+     */
+    public function indexFavoris(ManagerRegistry $doctrine)
+    {
+        $entityManager= $doctrine->getManager();
+        $pastas = $entityManager->getRepository(Pasta::class)->findAll();
+
+        return $this->render('pasta/favoris.html.twig',
+            [ 'pastas' => $pastas
+                ]
+        );
+    }
+
 
 
 }

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WAZAAAAAA!{% endblock %}
+
+{% block body %}
+
+    {% block main %}
+        <h1>Pasta</h1>
+
+        <table class="table">
+            <tbody>
+
+            <tr>
+                <th>zozo</th>
+            </tr>
+            <tr>
+            {% for pasta in pastas %}
+                {% set favoris = app.session.get('favoris') %}
+                {% dump(favoris) %}
+                {% if pasta.id in favoris %}
+                    Favoris
+                {% else %}
+                    NOT Favoris
+                {% endif %}
+            {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    {% endblock %}
+{% endblock %}

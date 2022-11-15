@@ -11,6 +11,8 @@ return [
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
         '/cottura/list' => [[['_route' => 'cottura_list', '_controller' => 'App\\Controller\\CotturaController::listAction'], null, ['GET' => 0], null, false, false, null]],
         '/cottura/new' => [[['_route' => 'app_cottura_new', '_controller' => 'App\\Controller\\CotturaController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::index'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/pasta' => [[['_route' => 'home', '_controller' => 'App\\Controller\\PastaController::indexAction'], null, ['GET' => 0], null, true, false, null]],
         '/pasta/list' => [[['_route' => 'pasta_list', '_controller' => 'App\\Controller\\PastaController::listAction'], null, ['GET' => 0], null, false, false, null]],
         '/pasta/new' => [[['_route' => 'app_pasta_new', '_controller' => 'App\\Controller\\PastaController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
@@ -33,20 +35,21 @@ return [
                     .'|(\\d+)/edit(*:123)'
                     .'|([^/]++)(*:139)'
                     .'|mark/(\\d+)(*:157)'
+                    .'|favoris(*:172)'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:197)'
-                    .'|wdt/([^/]++)(*:217)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:212)'
+                    .'|wdt/([^/]++)(*:232)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:263)'
-                            .'|router(*:277)'
+                            .'|search/results(*:278)'
+                            .'|router(*:292)'
                             .'|exception(?'
-                                .'|(*:297)'
-                                .'|\\.css(*:310)'
+                                .'|(*:312)'
+                                .'|\\.css(*:325)'
                             .')'
                         .')'
-                        .'|(*:320)'
+                        .'|(*:335)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -60,13 +63,14 @@ return [
         123 => [[['_route' => 'pasta_edit', '_controller' => 'App\\Controller\\PastaController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         139 => [[['_route' => 'app_pasta_delete', '_controller' => 'App\\Controller\\PastaController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
         157 => [[['_route' => 'pasta_mark', '_controller' => 'App\\Controller\\PastaController::markAction'], ['id'], ['GET' => 0], null, false, true, null]],
-        197 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        217 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        263 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        277 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        297 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        310 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        320 => [
+        172 => [[['_route' => 'favoris', '_controller' => 'App\\Controller\\PastaController::indexFavoris'], [], ['GET' => 0], null, false, false, null]],
+        212 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        232 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        278 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        292 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        312 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        325 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        335 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
