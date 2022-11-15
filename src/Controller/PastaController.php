@@ -139,5 +139,40 @@ class PastaController extends AbstractController
         return $this->redirectToRoute('pasta_list', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * Mark a pasta as current priority in the user's session
+     *
+     * @Route("/mark/{id}", name="pasta_mark", requirements={ "id": "\d+"}, methods="GET")
+     */
+    public function markAction(Request $request, Pasta $pasta): Response
+    {
+
+        $favoris = $request->getSession()->get('favoris');
+        if( ! is_array($favoris) ) {
+            $favoris = array();
+        }
+
+        $id = $pasta->getId();
+
+        // si l'identifiant n'est pas présent dans le tableau des favoris, l'ajouter
+        if (! in_array($id, $favoris) )
+        {
+            $favoris[] = $id;
+        }
+        else
+// sinon, le retirer du tableau
+        {
+            $favoris = array_diff($favoris, array($id));
+        }
+
+        $request->getSession()->set('favoris', $favoris);
+
+        dump($pasta);
+        return $this->redirectToRoute('pasta_show',
+            ['id' => $pasta->getId()]);
+
+    }
+
+
 
 }

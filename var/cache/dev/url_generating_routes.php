@@ -16,6 +16,7 @@ return [
     'app_pasta_new' => [[], ['_controller' => 'App\\Controller\\PastaController::new'], [], [['text', '/pasta/new']], [], [], []],
     'pasta_edit' => [['id'], ['_controller' => 'App\\Controller\\PastaController::edit'], ['id' => '\\d+'], [['text', '/edit'], ['variable', '/', '\\d+', 'id', true], ['text', '/pasta']], [], [], []],
     'app_pasta_delete' => [['id'], ['_controller' => 'App\\Controller\\PastaController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/pasta']], [], [], []],
+    'pasta_mark' => [['id'], ['_controller' => 'App\\Controller\\PastaController::markAction'], ['id' => '\\d+'], [['variable', '/', '\\d+', 'id', true], ['text', '/pasta/mark']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     '_wdt' => [['token'], ['_controller' => 'web_profiler.controller.profiler::toolbarAction'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/_wdt']], [], [], []],
     '_profiler_home' => [[], ['_controller' => 'web_profiler.controller.profiler::homeAction'], [], [['text', '/_profiler/']], [], [], []],

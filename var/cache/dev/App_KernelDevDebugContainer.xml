@@ -7234,7 +7234,13 @@
         <argument key="pastaRepository" type="service_closure" id="App\Repository\PastaRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.eM8Pa3o" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.aBVtCgU" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="pasta" type="service_closure" id=".errored..service_locator.aBVtCgU.App\Entity\Pasta"/>
+      </argument>
+    </service>
+    <service id=".service_locator.6kIWT2X" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7247,6 +7253,7 @@
         <argument key="App\Controller\PastaController::delete" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController::edit" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController::listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\PastaController::markAction" type="service_closure" id=".service_locator.aBVtCgU"/>
         <argument key="App\Controller\PastaController::new" type="service_closure" id=".service_locator.ShDxeXy"/>
         <argument key="App\Controller\PastaController::showAction" type="service_closure" id=".service_locator.veWjOQO"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
@@ -7265,6 +7272,7 @@
         <argument key="App\Controller\PastaController:delete" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController:edit" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController:listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
+        <argument key="App\Controller\PastaController:markAction" type="service_closure" id=".service_locator.aBVtCgU"/>
         <argument key="App\Controller\PastaController:new" type="service_closure" id=".service_locator.ShDxeXy"/>
         <argument key="App\Controller\PastaController:showAction" type="service_closure" id=".service_locator.veWjOQO"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
@@ -7945,12 +7953,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.eM8Pa3o"/>
+      <argument type="service" id=".service_locator.6kIWT2X"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.eM8Pa3o"/>
+      <argument type="service" id=".service_locator.6kIWT2X"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7985,6 +7993,7 @@
     <service id=".errored..service_locator.l.agzrN.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".errored..service_locator.veWjOQO.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".errored..service_locator.JxKhRXN.App\Entity\Pasta" class="App\Entity\Pasta"/>
+    <service id=".errored..service_locator.aBVtCgU.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".App\Command\AddCoturaCommand.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>app:add-cotura</argument>
       <argument type="collection"/>
@@ -8992,7 +9001,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.eM8Pa3o"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.6kIWT2X"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9018,7 +9027,7 @@
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.5RT0dss" alias=".service_locator.veWjOQO"/>
-    <service id=".service_locator.9Xhmcjg" alias=".service_locator.eM8Pa3o"/>
+    <service id=".service_locator.tPt7qpj" alias=".service_locator.6kIWT2X"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.XWFCQrE" alias=".service_locator.vkv2C8O"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -9059,6 +9068,7 @@
     <service id=".service_locator.se.5.ui" alias=".service_locator.veWjOQO"/>
     <service id=".service_locator.nZnjV2Z" alias=".service_locator.ShDxeXy"/>
     <service id=".service_locator.fbHjLRN" alias=".service_locator.JxKhRXN"/>
+    <service id=".service_locator.cidu2fF" alias=".service_locator.aBVtCgU"/>
     <service id=".service_locator.XCOOvJG" alias=".service_locator.tLJfFGz"/>
     <service id=".service_locator.Wd_D6Iy" alias=".service_locator.GNc8e5B"/>
     <service id=".service_locator.L0rFhJm" alias=".service_locator.GVyCdgr"/>

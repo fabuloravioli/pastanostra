@@ -32,20 +32,21 @@ return [
                     .'|(\\d+)(*:105)'
                     .'|(\\d+)/edit(*:123)'
                     .'|([^/]++)(*:139)'
+                    .'|mark/(\\d+)(*:157)'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:179)'
-                    .'|wdt/([^/]++)(*:199)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:197)'
+                    .'|wdt/([^/]++)(*:217)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:245)'
-                            .'|router(*:259)'
+                            .'|search/results(*:263)'
+                            .'|router(*:277)'
                             .'|exception(?'
-                                .'|(*:279)'
-                                .'|\\.css(*:292)'
+                                .'|(*:297)'
+                                .'|\\.css(*:310)'
                             .')'
                         .')'
-                        .'|(*:302)'
+                        .'|(*:320)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -58,13 +59,14 @@ return [
         105 => [[['_route' => 'pasta_show', '_controller' => 'App\\Controller\\PastaController::showAction'], ['id'], ['GET' => 0], null, false, true, null]],
         123 => [[['_route' => 'pasta_edit', '_controller' => 'App\\Controller\\PastaController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         139 => [[['_route' => 'app_pasta_delete', '_controller' => 'App\\Controller\\PastaController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        179 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        199 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        245 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        259 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        279 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        292 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        302 => [
+        157 => [[['_route' => 'pasta_mark', '_controller' => 'App\\Controller\\PastaController::markAction'], ['id'], ['GET' => 0], null, false, true, null]],
+        197 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        217 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        263 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        277 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        297 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        310 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        320 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
