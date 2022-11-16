@@ -39,6 +39,11 @@ class Pasta
      */
     private $cotturas;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="pasta")
+     */
+    private $member;
+
     public function __construct()
     {
         $this->cotturas = new ArrayCollection();
@@ -117,6 +122,18 @@ class Pasta
 
     public function __toString() {
         return $this->nome . " (" . $this->origine . ")";
+    }
+
+    public function getMember(): ?Member
+    {
+        return $this->member;
+    }
+
+    public function setMember(?Member $member): self
+    {
+        $this->member = $member;
+
+        return $this;
     }
 
 }
