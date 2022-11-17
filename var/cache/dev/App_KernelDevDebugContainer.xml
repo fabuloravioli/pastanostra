@@ -442,6 +442,13 @@
         <argument type="service" id=".service_locator.GNc8e5B.App\Controller\CotturaController"/>
       </call>
     </service>
+    <service id="App\Controller\MemberController" class="App\Controller\MemberController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\MemberController"/>
+      </call>
+    </service>
     <service id="App\Controller\PastaController" class="App\Controller\PastaController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -459,10 +466,17 @@
     <service id="App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\MemberType" class="App\Form\MemberType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\PastaType" class="App\Form\PastaType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\MemberRepository" class="App\Repository\MemberRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -1249,6 +1263,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\CotturaType</argument>
+        <argument>App\Form\MemberType</argument>
         <argument>App\Form\PastaType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -3517,7 +3532,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.vkv2C8O"/>
+      <argument type="service" id=".service_locator.MoXHx0R"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4416,7 +4431,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.vysdGVF"/>
+      <argument type="service" id=".service_locator.NW8YhnM"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6771,6 +6786,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CotturaController" class="App\Controller\CotturaController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\MemberController" class="App\Controller\MemberController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MemberController" class="App\Controller\MemberController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\MemberController" class="App\Controller\MemberController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PastaController" class="App\Controller\PastaController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6780,10 +6798,14 @@
     <service id=".abstract.instanceof.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\CotturaType" class="App\Form\CotturaType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MemberType" class="App\Form\MemberType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\MemberType" class="App\Form\MemberType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PastaType" class="App\Form\PastaType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PastaType" class="App\Form\PastaType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CotturaRepository" class="App\Repository\CotturaRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MemberRepository" class="App\Repository\MemberRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\MemberRepository" class="App\Repository\MemberRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PastaRepository" class="App\Repository\PastaRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PastaRepository" class="App\Repository\PastaRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterConfiguratorInterface.0.EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Filter\Configurator\ChoiceConfigurator" abstract="true"/>
@@ -7224,6 +7246,25 @@
         <argument key="pasta" type="service_closure" id=".errored..service_locator.l.agzrN.App\Entity\Pasta"/>
       </argument>
     </service>
+    <service id=".service_locator.JDftsRb" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="memberRepository" type="service_closure" id="App\Repository\MemberRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.GjLTXhJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="member" type="service_closure" id=".errored..service_locator.GjLTXhJ.App\Entity\Member"/>
+      </argument>
+    </service>
+    <service id=".service_locator..9.rL3d" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="member" type="service_closure" id=".errored..service_locator..9.rL3d.App\Entity\Member"/>
+        <argument key="memberRepository" type="service_closure" id="App\Repository\MemberRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.veWjOQO" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7250,7 +7291,7 @@
         <argument key="pasta" type="service_closure" id=".errored..service_locator.aBVtCgU.App\Entity\Pasta"/>
       </argument>
     </service>
-    <service id=".service_locator.6kIWT2X" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.7G4UOBk" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.q6hA_O0"/>
@@ -7260,6 +7301,11 @@
         <argument key="App\Controller\CotturaController::new" type="service_closure" id=".service_locator.GH9OT0H"/>
         <argument key="App\Controller\CotturaController::newInPasta" type="service_closure" id=".service_locator.l.agzrN"/>
         <argument key="App\Controller\CotturaController::showAction" type="service_closure" id=".service_locator.ocIBVJa"/>
+        <argument key="App\Controller\MemberController::delete" type="service_closure" id=".service_locator..9.rL3d"/>
+        <argument key="App\Controller\MemberController::edit" type="service_closure" id=".service_locator..9.rL3d"/>
+        <argument key="App\Controller\MemberController::index" type="service_closure" id=".service_locator.JDftsRb"/>
+        <argument key="App\Controller\MemberController::new" type="service_closure" id=".service_locator.JDftsRb"/>
+        <argument key="App\Controller\MemberController::show" type="service_closure" id=".service_locator.GjLTXhJ"/>
         <argument key="App\Controller\PastaController::delete" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController::edit" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController::listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
@@ -7279,6 +7325,11 @@
         <argument key="App\Controller\CotturaController:new" type="service_closure" id=".service_locator.GH9OT0H"/>
         <argument key="App\Controller\CotturaController:newInPasta" type="service_closure" id=".service_locator.l.agzrN"/>
         <argument key="App\Controller\CotturaController:showAction" type="service_closure" id=".service_locator.ocIBVJa"/>
+        <argument key="App\Controller\MemberController:delete" type="service_closure" id=".service_locator..9.rL3d"/>
+        <argument key="App\Controller\MemberController:edit" type="service_closure" id=".service_locator..9.rL3d"/>
+        <argument key="App\Controller\MemberController:index" type="service_closure" id=".service_locator.JDftsRb"/>
+        <argument key="App\Controller\MemberController:new" type="service_closure" id=".service_locator.JDftsRb"/>
+        <argument key="App\Controller\MemberController:show" type="service_closure" id=".service_locator.GjLTXhJ"/>
         <argument key="App\Controller\PastaController:delete" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController:edit" type="service_closure" id=".service_locator.JxKhRXN"/>
         <argument key="App\Controller\PastaController:listAction" type="service_closure" id=".service_locator.T7xmfzk"/>
@@ -7359,10 +7410,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.vkv2C8O" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.MoXHx0R" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\CotturaType" type="service_closure" id="App\Form\CotturaType"/>
+        <argument key="App\Form\MemberType" type="service_closure" id="App\Form\MemberType"/>
         <argument key="App\Form\PastaType" type="service_closure" id="App\Form\PastaType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType"/>
@@ -7452,10 +7504,11 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.vysdGVF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.NW8YhnM" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CotturaRepository" type="service_closure" id="App\Repository\CotturaRepository"/>
+        <argument key="App\Repository\MemberRepository" type="service_closure" id="App\Repository\MemberRepository"/>
         <argument key="App\Repository\PastaRepository" type="service_closure" id="App\Repository\PastaRepository"/>
       </argument>
     </service>
@@ -7773,6 +7826,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.GNc8e5B" method="withContext"/>
     </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\MemberController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MemberController"/>
+      <argument>App\Controller\MemberController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
     <service id=".service_locator.GNc8e5B.App\Controller\PastaController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PastaController"/>
       <argument>App\Controller\PastaController</argument>
@@ -7963,12 +8022,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.6kIWT2X"/>
+      <argument type="service" id=".service_locator.7G4UOBk"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.6kIWT2X"/>
+      <argument type="service" id=".service_locator.7G4UOBk"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8001,6 +8060,8 @@
     <service id=".errored..service_locator.ocIBVJa.App\Entity\Cottura" class="App\Entity\Cottura"/>
     <service id=".errored..service_locator.O_Y87wA.App\Entity\Cottura" class="App\Entity\Cottura"/>
     <service id=".errored..service_locator.l.agzrN.App\Entity\Pasta" class="App\Entity\Pasta"/>
+    <service id=".errored..service_locator.GjLTXhJ.App\Entity\Member" class="App\Entity\Member"/>
+    <service id=".errored..service_locator..9.rL3d.App\Entity\Member" class="App\Entity\Member"/>
     <service id=".errored..service_locator.veWjOQO.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".errored..service_locator.JxKhRXN.App\Entity\Pasta" class="App\Entity\Pasta"/>
     <service id=".errored..service_locator.aBVtCgU.App\Entity\Pasta" class="App\Entity\Pasta"/>
@@ -9011,7 +9072,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.6kIWT2X"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.7G4UOBk"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -9037,9 +9098,9 @@
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.5RT0dss" alias=".service_locator.veWjOQO"/>
-    <service id=".service_locator.tPt7qpj" alias=".service_locator.6kIWT2X"/>
+    <service id=".service_locator.UlVN76p" alias=".service_locator.7G4UOBk"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.XWFCQrE" alias=".service_locator.vkv2C8O"/>
+    <service id=".service_locator.r4B1LKH" alias=".service_locator.MoXHx0R"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.wPLAlW_" alias=".service_locator.tLJfFGz"/>
@@ -9075,6 +9136,9 @@
     <service id=".service_locator.DMayLTL" alias=".service_locator.GH9OT0H"/>
     <service id=".service_locator.YUbEmEq" alias=".service_locator.O_Y87wA"/>
     <service id=".service_locator.0nwEDyH" alias=".service_locator.l.agzrN"/>
+    <service id=".service_locator.eSJW0tr" alias=".service_locator.JDftsRb"/>
+    <service id=".service_locator.Jm6a6Ho" alias=".service_locator.GjLTXhJ"/>
+    <service id=".service_locator.vaRlb3I" alias=".service_locator..9.rL3d"/>
     <service id=".service_locator.se.5.ui" alias=".service_locator.veWjOQO"/>
     <service id=".service_locator.nZnjV2Z" alias=".service_locator.ShDxeXy"/>
     <service id=".service_locator.fbHjLRN" alias=".service_locator.JxKhRXN"/>
