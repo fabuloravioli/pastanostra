@@ -34,9 +34,15 @@ class Member
      */
     private $pasta;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Placard::class, mappedBy="member")
+     */
+    private $placard;
+
     public function __construct()
     {
         $this->pasta = new ArrayCollection();
+        $this->placard = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +98,36 @@ class Member
             // set the owning side to null (unless already changed)
             if ($pastum->getMember() === $this) {
                 $pastum->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Placard>
+     */
+    public function getPlacard(): Collection
+    {
+        return $this->placard;
+    }
+
+    public function addPlacard(Placard $placard): self
+    {
+        if (!$this->placard->contains($placard)) {
+            $this->placard[] = $placard;
+            $placard->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlacard(Placard $placard): self
+    {
+        if ($this->placard->removeElement($placard)) {
+            // set the owning side to null (unless already changed)
+            if ($placard->getMember() === $this) {
+                $placard->setMember(null);
             }
         }
 

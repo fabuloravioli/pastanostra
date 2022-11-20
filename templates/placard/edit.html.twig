@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Placard{% endblock %}
+
+{% block body %}
+    <h1>Edit Placard</h1>
+
+    {{ include('placard/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_placard_index') }}">back to list</a>
+
+    {{ include('placard/_delete_form.html.twig') }}
+{% endblock %}

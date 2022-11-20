@@ -44,9 +44,21 @@ class Pasta
      */
     private $member;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Fabrication::class, mappedBy="pasta")
+     */
+    private $fabrications;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Placard::class, mappedBy="pasta")
+     */
+    private $placards;
+
     public function __construct()
     {
         $this->cotturas = new ArrayCollection();
+        $this->fabrications = new ArrayCollection();
+        $this->placards = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -132,6 +144,60 @@ class Pasta
     public function setMember(?Member $member): self
     {
         $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fabrication>
+     */
+    public function getFabrications(): Collection
+    {
+        return $this->fabrications;
+    }
+
+    public function addFabrication(Fabrication $fabrication): self
+    {
+        if (!$this->fabrications->contains($fabrication)) {
+            $this->fabrications[] = $fabrication;
+            $fabrication->addPasta($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFabrication(Fabrication $fabrication): self
+    {
+        if ($this->fabrications->removeElement($fabrication)) {
+            $fabrication->removePasta($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Placard>
+     */
+    public function getPlacards(): Collection
+    {
+        return $this->placards;
+    }
+
+    public function addPlacard(Placard $placard): self
+    {
+        if (!$this->placards->contains($placard)) {
+            $this->placards[] = $placard;
+            $placard->addPastum($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlacard(Placard $placard): self
+    {
+        if ($this->placards->removeElement($placard)) {
+            $placard->removePastum($this);
+        }
 
         return $this;
     }

@@ -49,16 +49,16 @@ class AppFixtures extends Fixture
      */
     private static function cotturaGenerator()
     {
-        yield ["Tagiatelle", "Naple", 5, ["artisanale", "Mario"], "aldente", 6];
-        yield ["Pasta Box", "Rome", 4, ["artisanale", "Mario"], "bueno cuito", 10];
-        yield ["Pasta Box", "Rome", 4, ["artisanale", "Mario"], "aldente", 7];
-        yield ["Pen", "Florence", 3, ["artisanale", "Mario"],"mi cuito", 8];
-        yield ["Pen", "Florence", 3, ["artisanale", "Mario"],"aldente", 5];
-        yield ["Torsade", "Francfort", 5, ["artisanale", "Mario"],"bueno cuito", 11];
-        yield ["Torsade", "Francfort", 5, ["artisanale", "Mario"],"aldente", 9];
-        yield ["Spagetti", "Seyches", 8, ["artisanale", "Mario"],"mi cuito", 7];
-        yield ["Spagetti", "Seyches", 8, ["artisanale", "Mario"],"aldente", 6];
-        yield ["Coude", "Bras long sur seine", 5, ["artisanale", "Mario"],"aldente", 7];
+        yield ["Tagiatelle", "Naple", 5, "aldente", 6];
+        yield ["Pasta Box", "Rome", 4, "bueno cuito", 10];
+        yield ["Pasta Box", "Rome", 4,  "aldente", 7];
+        yield ["Pen", "Florence", 3, "mi cuito", 8];
+        yield ["Pen", "Florence", 3, "aldente", 5];
+        yield ["Torsade", "Francfort", 5, "bueno cuito", 11];
+        yield ["Torsade", "Francfort", 5, "aldente", 9];
+        yield ["Spagetti", "Seyches", 8, "mi cuito", 7];
+        yield ["Spagetti", "Seyches", 8,"aldente", 6];
+        yield ["Coude", "Bras long sur seine", 5,"aldente", 7];
     }
 
 
@@ -69,12 +69,12 @@ class AppFixtures extends Fixture
      */
     private static function memberGenerator()
     {
-        yield ["Tagiatelle", "Naple", 5, ["artisanale", "Mario"], "Fabulo"];
-        yield ["Pasta Box", "Rome", 4, ["artisanale", "Mario"], "Fabulo"];
-        yield ["Pen", "Florence", 3, ["artisanale", "Mario"], "Fabulo"];
-        yield ["Torsade", "Francfort", 5, ["artisanale", "Mario"], "Fabulo"];
-        yield ["Spagetti", "Seyches", 8, ["artisanale", "Mario"], "Fabulo"];
-        yield ["Coude", "Bras long sur seine", 5, ["artisanale", "Mario"], "Fabulo"];
+        yield [[["Tagiatelle", "Naple"],["Pasta Box", "Rome"]],  "Fabulo"];
+        //yield ["Pasta Box", "Rome", "Fabulo"];
+        //yield ["Pen", "Florence",  "Fabulo"];
+        //yield ["Torsade", "Francfort", "Fabulo"];
+        //yield ["Spagetti", "Seyches", "Fabulo"];
+        //yield ["Coude", "Bras long sur seine", "Fabulo"];
     }
 
     public function load(ObjectManager $manager)
@@ -124,14 +124,17 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
 
-        foreach (self::memberGenerator() as [$nome, $origine , $nom])
+        foreach (self::memberGenerator() as [$pastas, $nom])
         {
-            $pasta = $pastaRepo->findOneBy(['nome' => $nome, 'origine' => $origine]);
             $member = new Member();
             $member->setNom($nom);
-            $pasta->addMember($member);
+            foreach ($pastas as [$nome, $origine]) {
+                $pasta = $pastaRepo->findOneBy(['nome' => $nome, 'origine' => $origine]);
+                $pasta->setMember($member);
+            }
             // there's a cascade persist on fim-recommendations which avoids persisting down the relation
             $manager->persist($pasta);
+            $manager->persist($member);
         }
         $manager->flush();
     }

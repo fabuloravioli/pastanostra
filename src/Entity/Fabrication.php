@@ -34,9 +34,15 @@ class Fabrication
      */
     private $producteur;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Pasta::class, inversedBy="fabrications")
+     */
+    private $pasta;
+
     public function __construct()
     {
         $this->producteur = new ArrayCollection();
+        $this->pasta = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,6 +74,11 @@ class Fabrication
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getIntitulé() . $this->getParent();
+    }
+
     /**
      * @return Collection<int, self>
      */
@@ -94,6 +105,30 @@ class Fabrication
                 $artisan->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pasta>
+     */
+    public function getPasta(): Collection
+    {
+        return $this->pasta;
+    }
+
+    public function addPasta(Pasta $pasta): self
+    {
+        if (!$this->pasta->contains($pasta)) {
+            $this->pasta[] = $pasta;
+        }
+
+        return $this;
+    }
+
+    public function removePasta(Pasta $pasta): self
+    {
+        $this->pasta->removeElement($pasta);
 
         return $this;
     }

@@ -76,7 +76,7 @@ class Cottura
 
     public function __toString(): string
     {
-      return "for this " . $this->typo . " it's " . $this->tiempo;
+      return "for this, " . $this->typo . " it's " . $this->tiempo . " minutes";
     }
 
 }

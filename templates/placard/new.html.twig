@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Placard{% endblock %}
+
+{% block body %}
+    <h1>Create new Placard</h1>
+
+    {{ include('placard/_form.html.twig') }}
+
+    <a href="{{ path('app_placard_index') }}">back to list</a>
+{% endblock %}
