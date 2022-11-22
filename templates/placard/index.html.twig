@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ placard.id }}</td>
                 <td>{{ placard.description }}</td>
-                <td>{{ placard.publiée ? 'Yes' : 'No' }}</td>
+                <td>{{ placard.publiee ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_placard_show', {'id': placard.id}) }}">show</a>
                     <a href="{{ path('app_placard_edit', {'id': placard.id}) }}">edit</a>
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_placard_new') }}">Create new</a>
+
 {% endblock %}

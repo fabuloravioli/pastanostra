@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}WAZAAAAAA!{% endblock %}
@@ -23,13 +24,13 @@
             <tr>
                 <th>cottura</th>
                 <td>
-
-                {% for cottura in pasta.cotturas %}
-                        <li><a href="{{ path('cottura_show', {'id' : cottura.id}) }}">{{ cottura.typo }}</a><li/>
-                {% else %}
-                    pas de cuisson
-                {% endfor %}
-
+                    <ul>
+                        {% for cottura in pasta.cotturas %}
+                            <a href="{{ path('cottura_show', {'id' : cottura.id}) }}">{{ cottura.typo }}</a>
+                        {% else %}
+                            pas de cuisson
+                        {% endfor %}
+                    </ul>
                     <a href="{{ path('pasta_show', {'id' : pasta.id}) }}">add new cottura</a>
                 </td>
             </tr>
@@ -43,11 +44,15 @@
             </tbody>
         </table>
 
-        <a href="{{ path('pasta_edit', {'id': pasta.id}) }}">edit</a>
+        <li><a href="{{ path('pasta_edit', {'id': pasta.id}) }}">edit</a></li>
 
-        <a href="{{ path('pasta_list') }}">back to list</a>
+        <li><a href="{{ path('pasta_list') }}">back to list</a></li>
 
-        <a href="{{ path('cottura_newinpasta', {'id' : pasta.id}) }}">add a cottura</a>
+        <li><a href="{{ path('cottura_newinpasta', {'id' : pasta.id}) }}">add a cottura</a></li>
+
+        <li><a href="{{ path('app_placard_show', { 'id': placard.id}) }}">back to placard</a></li>
+
 
     {% endblock %}
 {% endblock %}
+

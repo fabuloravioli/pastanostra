@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Cottura;
 use App\Entity\Member;
 use App\Entity\Pasta;
+use App\Entity\Placard;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -38,6 +39,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Pastas', 'fas fa-list', Pasta::class);
         yield MenuItem::linkToCrud('Cotturas', 'fas fa-list', Cottura::class);
         yield MenuItem::linkToCrud('Members', 'fas fa-list', Member::class);
+        yield MenuItem::linkToCrud('Placards', 'fas fa-list', Placard::class);
     }
 
 

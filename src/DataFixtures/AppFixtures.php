@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Placard;
 use App\Entity\Member;
 use App\Entity\Fabrication;
 use App\Entity\Pasta;
@@ -9,6 +10,7 @@ use App\Repository\PastaRepository;
 use App\Repository\CotturaRepository;
 use App\Repository\FabricationRepository;
 use App\Repository\MemberRepository;
+use App\Repository\PlacardRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Cottura;
@@ -70,11 +72,19 @@ class AppFixtures extends Fixture
     private static function memberGenerator()
     {
         yield [[["Tagiatelle", "Naple"],["Pasta Box", "Rome"]],  "Fabulo"];
-        //yield ["Pasta Box", "Rome", "Fabulo"];
-        //yield ["Pen", "Florence",  "Fabulo"];
-        //yield ["Torsade", "Francfort", "Fabulo"];
-        //yield ["Spagetti", "Seyches", "Fabulo"];
-        //yield ["Coude", "Bras long sur seine", "Fabulo"];
+        yield [[["Torsade", "Francfort"],["Coude", "Bras long sur seine"]],  "Pablito"];
+    }
+
+    /**
+     * Generates initialization data for member:
+     *  [pasta_nome, pasta_origine, pasta_size,pasta_fabrication, nom, description, publiée]
+     * @return \\Generator
+     */
+    private static function placardGenerator()
+    {
+        yield [[["Tagiatelle", "Naple"],["Pasta Box", "Rome"]],  "Fabulo", "Pour les repas de tout les jours", True];
+        yield [null, 'Fabulo', "Mon placard secret", False];
+        yield [[["Torsade", "Francfort"],["Coude", "Bras long sur seine"]], 'Pablito', "Pour les grosses faims", True];
     }
 
     public function load(ObjectManager $manager)
@@ -137,6 +147,29 @@ class AppFixtures extends Fixture
             $manager->persist($member);
         }
         $manager->flush();
+
+        $memberRepo = $manager->getRepository(Member::class);
+
+        foreach (self::placardGenerator() as [$pastas, $nom, $description, $publiée]){
+            $placard = new Placard();
+            $placard->setDescription($description);
+            $placard->setPubliee($publiée);
+            if ($pastas != null){
+                foreach ($pastas as [$nome, $origine]) {
+                    $pasta = $pastaRepo->findOneBy(['nome' => $nome, 'origine' => $origine]);
+                    $pasta->addPlacard($placard);
+                    $manager->persist($pasta);
+                }
+            }
+            $member = $memberRepo->findOneBy(['nom'=>$nom]);
+            $member->addPlacard($placard);
+            $manager->persist($pasta);
+            $manager->persist($member);
+            $manager->persist($placard);
+        }
+
+        $manager->flush();
+
     }
 }
 

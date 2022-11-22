@@ -19,12 +19,31 @@
                 <th>Description</th>
                 <td>{{ member.description }}</td>
             </tr>
+            <tr>
+                <th>pastas</th>
+                <td>
+                    {% for pasta in member.pasta %}
+                    <li><a href="{{ path('pasta_show', {'id' : pasta.id}) }}">{{ pasta }}</li>
+                    {% endfor %}
+                </td>
+            </tr>
+            <th>placards</th>
+            <td>
+                {% for placard in member.placard %}
+                    <li><a href="{{ path('app_placard_show', {'id' : placard.id}) }}">{{ placard }}</li>
+                {% endfor %}
+            </td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_member_index') }}">back to list</a>
+    <li><a href="{{ path('app_placard_new', {'id': member.id}) }}">add new placard</a></li>
 
-    <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+    <li><a href="{{ path('app_pasta_new', {'id': member.id}) }}">add new pasta</a></li>
+
+    <li><a href="{{ path('app_member_index') }}">back to list</a><li/>
+
+    <il><a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a><li/>
 
     {{ include('member/_delete_form.html.twig') }}
 {% endblock %}

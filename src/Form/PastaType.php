@@ -15,6 +15,9 @@ class PastaType extends AbstractType
             ->add('nome')
             ->add('dimensioni')
             ->add('origine')
+            ->add('member', null, [
+                'disabled'   => true,
+            ])
         ;
     }
 

@@ -27,12 +27,12 @@ class Placard
     /**
      * @ORM\Column(type="boolean")
      */
-    private $publiée;
+    private $publiee;
 
     /**
      * @ORM\ManyToMany(targetEntity=Pasta::class, inversedBy="placards")
      */
-    private $pasta;
+    private $pastas;
 
     /**
      * @ORM\ManyToOne(targetEntity=Member::class, inversedBy="placard")
@@ -41,7 +41,7 @@ class Placard
 
     public function __construct()
     {
-        $this->pasta = new ArrayCollection();
+        $this->pastas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,14 +61,14 @@ class Placard
         return $this;
     }
 
-    public function isPubliée(): ?bool
+    public function isPubliee(): ?bool
     {
-        return $this->publiée;
+        return $this->publiee;
     }
 
-    public function setPubliée(bool $publiée): self
+    public function setPubliee(bool $publiee): self
     {
-        $this->publiée = $publiée;
+        $this->publiee = $publiee;
 
         return $this;
     }
@@ -76,15 +76,15 @@ class Placard
     /**
      * @return Collection<int, Pasta>
      */
-    public function getPasta(): Collection
+    public function getPastas(): Collection
     {
-        return $this->pasta;
+        return $this->pastas;
     }
 
     public function addPastum(Pasta $pastum): self
     {
-        if (!$this->pasta->contains($pastum)) {
-            $this->pasta[] = $pastum;
+        if (!$this->pastas->contains($pastum)) {
+            $this->pastas[] = $pastum;
         }
 
         return $this;
@@ -92,7 +92,7 @@ class Placard
 
     public function removePastum(Pasta $pastum): self
     {
-        $this->pasta->removeElement($pastum);
+        $this->pastas->removeElement($pastum);
 
         return $this;
     }
@@ -107,5 +107,9 @@ class Placard
         $this->member = $member;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->description;
     }
 }

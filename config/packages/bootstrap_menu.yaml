@@ -3,8 +3,14 @@ bootstrap_menu:
     main:
       items:
         pastas:
-          label: 'PASTAS'
+          label: 'Pastas'
           route: 'pasta_list'
-        cottura:
-          label: 'Cottura'
+        cotturas:
+          label: 'Cotturas'
           route: 'cottura_list'
+        placards:
+          label: 'Placards'
+          route: 'app_placard_index'
+        members:
+          label: 'Members'
+          route: 'app_member_index'

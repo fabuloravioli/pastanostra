@@ -11,12 +11,24 @@ class PlacardType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $placard = $options['data'] ?? null;
+        $member = $placard->getMember();
+
         $builder
             ->add('description')
-            ->add('publiée')
-            ->add('pasta')
-            ->add('member')
-        ;
+            ->add('publiee')
+            ->add('member', null, [
+                'disabled'   => true,
+            ])
+            ->add('pasta', null, [
+                'query_builder' => function (PastaRepository $er) use ($member) {
+                        return $er->createQueryBuilder('g')
+                            ->leftJoin('g.pasta', 'i')
+                            ->andWhere('i.owner = :member')
+                            ->setParameter('member', $member)
+                            ;
+                    }
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

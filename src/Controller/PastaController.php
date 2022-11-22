@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use Doctrine\Common\Collections\Criteria;
+use App\Entity\Member;
 use App\Entity\Cottura;
 use App\Entity\Pasta;
 use App\Repository\PastaRepository;
@@ -31,7 +32,7 @@ class PastaController extends AbstractController
     public function indexAction()
     {
         return $this->render('index.html.twig',
-            [ 'welcome' => "théophole je t'aime" ]
+            [ 'welcome' => "Partagez vos pates préférées en toute simplicité" ]
         );
     }
 
@@ -77,11 +78,16 @@ class PastaController extends AbstractController
 
 
     /**
-     * @Route("/new", name="app_pasta_new", methods={"GET", "POST"})
+     * @Route("/new/{id}", name="app_pasta_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, PastaRepository $pastaRepository): Response
+    public function new(Request $request, PastaRepository $pastaRepository, ManagerRegistry $doctrine, $id): Response
     {
-        $pasta = new pasta();
+        $pasta = new Pasta();
+        if ( $id != null) {
+            $entityManager = $doctrine->getManager();
+            $member = $entityManager->getRepository(Member::class)->findOneBy(['id' => $id]);
+            $pasta->setMember($member);
+        }
         $form = $this->createForm(PastaType::class, $pasta);
         $form->handleRequest($request);
 
